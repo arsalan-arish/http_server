@@ -2,15 +2,23 @@
 #pragma once
 #include <types.h>
 
+
 // Used by 'list' type struct to hold error status as state
 typedef enum {
     INDEX_OUT_OF_RANGE = 1,
     HEAP_FAILURE,
 } List_Error;
 
+
+// Each unit of data: item
+typedef struct {
+    void* data;
+    u64 data_len;
+} item; 
+
 // node
 typedef struct node {
-    void* data;
+    item item;
     struct node* next;
     struct node* prev;
 } node;
@@ -24,6 +32,7 @@ typedef struct {
 } list;
 
 
+
 list List(); 
 
 // These three insertion functions return pointers to buffers of the size specified.
@@ -32,12 +41,14 @@ void* append(list* list, u64 data_len);
 void* prepend(list* list, u64 data_len);
 void* insert(list* list, u64 data_len, i64 index, bool replace);
 
-void pop(list* list);
-void remove(list* list, void* data);
-void remove_index(list* list, i64 index);
+void pop(list* list); //TODO Make sure it also returns
+void pop_index(list* list, i32 index); //TODO: Implement
+void remove_value(list* list, void* data, u64 data_len);
+void remove_index(list* list, i64 index); //TODO: Implement
 
-void* get(list* list, i64 index);
-u64 search(list* list, byte* data, u64 data_len);
-i64 get_negative_index(list* list, u64 positive_index);
+item get(list* list, i64 index);
+u64 search(list* list, void* data, u64 data_len);
+i64 get_inverted_index(list* list, i64 index);
+i64 optimize_index(list* list, i64 index);
 
 void free_list(list* list);
