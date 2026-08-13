@@ -8,8 +8,6 @@ HTTP Server written from scratch in C
 
 #include <types.h>
 
-
-
 int main() {
 
 }
