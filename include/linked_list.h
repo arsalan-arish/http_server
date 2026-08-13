@@ -6,6 +6,8 @@
 // Used by 'list' type struct to hold error status as state
 typedef enum {
     INDEX_OUT_OF_RANGE = 1,
+    POP_FROM_EMPTY_LIST,
+    VALUE_NOT_FOUND,
     HEAP_FAILURE,
 } List_Error;
 
@@ -41,14 +43,21 @@ void* append(list* list, u64 data_len);
 void* prepend(list* list, u64 data_len);
 void* insert(list* list, u64 data_len, i64 index, bool replace);
 
-void pop(list* list); //TODO Make sure it also returns
-void pop_index(list* list, i32 index); //TODO: Implement
+item pop(list* list, bool _return);
+void pop_index(list* list, i32 index);
 void remove_value(list* list, void* data, u64 data_len);
-void remove_index(list* list, i64 index); //TODO: Implement
+void remove_index(list* list, i64 index); 
 
 item get(list* list, i64 index);
 u64 search(list* list, void* data, u64 data_len);
 i64 get_inverted_index(list* list, i64 index);
-i64 optimize_index(list* list, i64 index);
 
+void free_item(item* item); 
 void free_list(list* list);
+void _free_node(node* node);
+
+i64 _optimize_index(list* list, i64 index);
+void _unwire_node(list* list, node* node);
+node* _create_node(u64 data_len, void** data_buffer);
+node* _find_node_by_index(list* list, i64 index);
+void _check_index_in_range(list* list, i64 index);
