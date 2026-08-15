@@ -15,5 +15,7 @@ typedef float f32;
 typedef double f64;
 typedef long double f128;
 
-typedef _Bool bool;
+#ifndef bool
+#define _Bool bool
+#endif
 typedef unsigned char byte;
