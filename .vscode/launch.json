@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+       {
+         "name": "Debug",
+         "type": "lldb-dap",
+         "request": "launch",
+         "program": "${workspaceFolder}/build/http_server.exe",
+         "cwd": "${workspaceFolder}",
+         "stopOnEntry": true,
+         "console": "integratedTerminal",
+         "preLaunchTask": "Configure & Build",
+       } 
+    ]
+}

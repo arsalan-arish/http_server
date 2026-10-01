@@ -1,5 +1,4 @@
 /.cache
-/.vscode
+/.vs
+/out
 /build
-/c.md
-/old_c.md

@@ -1,0 +1,15 @@
+// -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Configure & Build",
+            "type": "shell",
+             "dependsOn": [
+                "CMake: configure",
+                "CMake: build"
+            ],
+           "dependsOrder": "sequence"
+        }
+    ]
+}
